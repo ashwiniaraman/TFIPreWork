@@ -12,11 +12,9 @@ app.use(bodyParser.json());
 var port = process.env.PORT || 1234;
 var router = express.Router(); //creating an instance of the express router which is a class provided by express
 
-app.use(express.static(__dirname+"/public"));
-
 router.get("/", function (req, res) {
     res.json({
-        "message": "api is working"
+        "message": "Api is functional. Use /api/books for the Book API"
     });
 });
 
@@ -80,8 +78,9 @@ router.route("/books/:id")
     });
 
 app.use("/api", router);
-app.get("/", function(req,res){
-    res.sendfile("./public/index.html");
+
+app.use("/",function(req,res){
+   res.json({"message":"Access the API at /api/books"}); 
 });
 
 app.listen(port); //waiting for a user's request on the port
