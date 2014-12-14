@@ -1,7 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/TFIPrework");
+mongoose.connect("mongodb://tfiprework_admin:tfi123@ds063870.mongolab.com:63870/ashtfiprework");
 var Book = require("./app/models/book");
 
 
@@ -11,6 +11,8 @@ app.use(bodyParser.json());
 
 var port = 1234;
 var router = express.Router(); //creating an instance of the express router which is a class provided by express
+
+app.use(express.static(__dirname+"/public"));
 
 router.get("/", function (req, res) {
     res.json({
@@ -78,4 +80,9 @@ router.route("/books/:id")
     });
 
 app.use("/api", router);
+app.get("/", function(req,res){
+    res.sendfile("./public/index.html");
+});
+
 app.listen(port); //waiting for a user's request on the port
+
