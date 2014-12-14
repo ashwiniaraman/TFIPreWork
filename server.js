@@ -9,7 +9,7 @@ var app = express();
 app.use(bodyParser.urlencoded()); //delegating the body parser to read the body of any request coming to this app
 app.use(bodyParser.json());
 
-var port = 1234;
+var port = process.env.PORT || 1234;
 var router = express.Router(); //creating an instance of the express router which is a class provided by express
 
 app.use(express.static(__dirname+"/public"));
